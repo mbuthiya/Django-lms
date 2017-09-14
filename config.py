@@ -6,6 +6,6 @@ class ProdConfig(Config):
 
 class DevConfig(Config):
     DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://james:29654387@localhost/python_lms'
 
 config_options ={"production":ProdConfig,"default":DevConfig}
-
