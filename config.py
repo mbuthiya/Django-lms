@@ -1,6 +1,6 @@
 class Config:
-    pass
-
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    
 class ProdConfig(Config):
     pass
 
