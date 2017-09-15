@@ -1,0 +1,12 @@
+{% import 'macros/lesson_macro.html' as macros%}
+{% macro loop_days(list_days)%}
+
+  {% for day in list_days%}
+    {% set lessons = day.lessons.split(',') %}
+    <li><a class="load done" href="#01.html">{{day.day_name}}</a></li>
+    <ul>
+      {{ macros.loop_lessons(lessons)}}
+    </ul>
+  {%endfor%}
+
+{%endmacro%}

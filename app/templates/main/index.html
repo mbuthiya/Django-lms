@@ -1,4 +1,5 @@
 {% extends 'main/base.html'%}
+{% import 'macros/week_macro.html' as macros%}
 
 {% block content %}
 <div id="container">
@@ -8,69 +9,20 @@
       <br>
       <section>
         <div class="panel-group" id="accordion">
-          <!-- week 1 -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Week 1: BEHAVIOUR DRIVEN DEVELOPMENT WITH JAVA</a>
-                            </h4>
-            </div>
-            <div id="collapse1" class="panel-collapse collapse">
-              <div>
-                <ol class="panel-body">
-                  <li><a class="load done" href="#01.html">1: Monday</a></li>
-                  <ul>
-                    <li>Behaviour Driven Development Workflow</li>
-                    <li>Red Green Refactor Workflow</li>
-                    <li>REPL Practice</li>
-                  </ul>
-                  <li><a class="load done" href="#02.html">2: Tuesday</a></li>
-                  <ul>
-                    <li>Gradle and Project Dependencies</li>
-                    <li>Refactoring Using Gradle</li>
-                    <li>Debugging</li>
-                  </ul>
-                  <li><a class="load done" href="#03.html">3: Wednesday</a></li>
-                  <ul>
-                    <li>Mini Projects</li>
-                    <li>Leap Year Using BDD</li>
-                    <li>BDD with Objects and Encapsulation</li>
-                    <li>Front-End User Interface</li>
-                    <li>Gitignore</li>
-                    <li>Wrapper Classes</li>
-                    <li>Random</li>
-                  </ul>
-                  <li><a class="load done" href="#04.html">4: Thursday</a></li>
-                  <ul>
-                    <li>Exercises</li>
-                    <li>Formatted Strings</li>
-                  </ul>
-                  <li><a class="load done" href="#05.html">5: Friday</a></li>
-                  <ul>
-                    <li>Command Line Word Game</li>
-                  </ul>
-                  <li><a class="load done" href="#weekend-one.html">Weekend</a></li>
-                  <ul>
-                    <li>Web Applications in Java Objectives</li>
-                    <li>Web Clients and Servers</li>
-                    <li>Uniform Resource Locator (URL)</li>
-                    <li>HTTP Requests &amp; Response</li>
-                    <li>Web Developer Tools</li>
-                  </ul>
-                </ol>
-              </div>
-            </div>
-          </div>
-        
+          {{ macros.loop_weeks(weeks) }}
+
         </div>
       </section>
     </nav>
+
     <div id="content">
       <!-- content from the html pages in client folder goes here  -->
     </div>
+
     <footer>
-      <p>Copyright 2017 epicodus, Inc. Used under license by Moringa School.</p>
+      <p>Copyright 2017 Moringa School.</p>
     </footer>
+
   </div>
 
 {% endblock %}

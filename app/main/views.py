@@ -6,4 +6,5 @@ from .. import db
 @main.route('/')
 def index():
     week1 =Lesson.query.filter_by(week_number = 1).all()
-    return render_template('main/index.html',week1=week1)
+    weeks = {"Introduction To flask":week1}
+    return render_template('main/index.html',weeks=weeks)

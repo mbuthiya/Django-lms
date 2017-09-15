@@ -1,0 +1,20 @@
+{% import 'macros/day_macro.html' as macros%}
+{% macro loop_weeks(weeks)%}
+  <!-- Loop through the weeks -->
+  {% for title,week in weeks.items()%}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Week 1: {{title}}</a>
+                    </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse">
+      <div>
+        <ol class="panel-body">
+          {{ macros.loop_days(week)}}
+        </ol>
+      </div>
+    </div>
+  </div>
+  {%endfor%}
+{%endmacro%}

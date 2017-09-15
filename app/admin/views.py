@@ -12,11 +12,28 @@ def newLesson():
         week = int(form.weeks.data)
         body = form.body.data
         lessons = form.lessons.data
+        weekday = get_week_day(day)
 
-        new_day = Lesson(day_number=day,week_number=week,body=body,lessons=lessons)
+        new_day = Lesson(day_number=day,week_number=week,day_name=weekday,body=body,lessons=lessons)
         new_day.save_lesson()
         return redirect(url_for('main.index'))
 
 
 
     return render_template('admin/newLesson.html',form = form)
+
+def get_week_day(day_num):
+
+    weekday = None
+    if day_num == 1:
+        weekday = 'Monday'
+    elif day_num == 2:
+        weekday = 'Tuesday'
+    elif day_num == 3:
+        weekday = 'Wednesday'
+    elif day_num == 4:
+        weekday = 'Thursday'
+    elif day_num == 5:
+        weekday = 'Friday'
+
+    return weekday
