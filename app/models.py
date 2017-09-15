@@ -1,5 +1,4 @@
 from . import db
-from markdown import markdown
 import bleach
 
 class Lesson(db.Model):
