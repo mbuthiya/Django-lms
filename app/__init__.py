@@ -3,12 +3,14 @@ from flask import Flask
 from config import config_options
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
+from flask_simplemde import SimpleMDE
 
 
 
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+simple = SimpleMDE()
 
 
 def create_app(config_state):
@@ -18,6 +20,7 @@ def create_app(config_state):
 
     bootstrap.init_app(app)
     db.init_app(app)
+    simple.init_app(app)
 
 
     from .main import main as main_blueprint
