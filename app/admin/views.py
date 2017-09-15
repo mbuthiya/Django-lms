@@ -4,6 +4,16 @@ from .forms import CreateLesson
 from ..models import Lesson # soon to update to day
 from .. import db
 
+
+
+@admin.route('/dashboard')
+def dashboard():
+
+    days =Lesson.query.order_by(Lesson.day_number).all()
+    return render_template('admin/dashboard.html',days=days)
+
+
+
 @admin.route('/dashboard/newLesson',methods = ['GET','POST'])
 def newLesson():
     form = CreateLesson() # create a day
@@ -15,17 +25,18 @@ def newLesson():
         weekday = get_week_day(day)
         doc_num = day * week
 
-        new_day = Lesson(day_number=doc_num,week_number=week,day_name=weekday,body=body,lessons=lessons)
-        new_day.save_lesson()
+        if validate_new_lesson(doc_num):
+            new_day = Lesson(day_number=doc_num,week_number=week,day_name=weekday,body=body,lessons=lessons)
+            new_day.save_lesson()
+
         return redirect(url_for('main.index'))
-
-
 
     return render_template('admin/newLesson.html',form = form)
 
-def get_week_day(day_num):
 
+def get_week_day(day_num):
     weekday = None
+
     if day_num == 1:
         weekday = 'Monday'
     elif day_num == 2:
@@ -38,3 +49,14 @@ def get_week_day(day_num):
         weekday = 'Friday'
 
     return weekday
+
+
+def validate_new_lesson(day_num):
+
+    lesson = Lesson.query.filter_by(day_number =day_num).first()
+
+    if lesson:
+        flash("That day already has lessons Go to edit it")
+        return False
+    else:
+        return True
