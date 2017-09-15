@@ -13,8 +13,9 @@ def newLesson():
         body = form.body.data
         lessons = form.lessons.data
         weekday = get_week_day(day)
+        doc_num = day * week
 
-        new_day = Lesson(day_number=day,week_number=week,day_name=weekday,body=body,lessons=lessons)
+        new_day = Lesson(day_number=doc_num,week_number=week,day_name=weekday,body=body,lessons=lessons)
         new_day.save_lesson()
         return redirect(url_for('main.index'))
 
