@@ -13,6 +13,7 @@ db = SQLAlchemy()
 simple = SimpleMDE()
 
 
+
 def create_app(config_state):
     app = Flask(__name__)
     app.config.from_object(config_options[config_state])
