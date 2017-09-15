@@ -3,7 +3,7 @@
 
   {% for day in list_days%}
     {% set lessons = day.lessons.split(',') %}
-    <li><a class="load done" href="#01.html">{{day.day_name}}</a></li>
+    <li><a class="load done" href="{{url_for('main.day_content',day_num=day.day_number)}}">{{day.day_name}}</a></li>
     <ul>
       {{ macros.loop_lessons(lessons)}}
     </ul>

@@ -18,10 +18,9 @@ class Lesson(db.Model):
 
         allowed_tags = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code',
         'em', 'i', 'li', 'ol', 'pre', 'strong', 'ul',
-        'h1', 'h2', 'h3', 'p']
-        target.body_html = bleach.linkify(bleach.clean(
-        markdown(value, output_format='html'),
-        tags=allowed_tags, strip=True))
+        'h1', 'h2', 'h3', 'p','summary']
+        
+        target.body_html =markdown(value, output_format='html')
 
 
     def save_lesson(self):

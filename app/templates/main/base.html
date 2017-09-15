@@ -1,8 +1,37 @@
 {% extends 'bootstrap/base.html' %}
+{% import 'macros/week_macro.html' as macros%}
+
 {%block styles %}
 
   {{super()}}
   <!--Importing the css   -->
   <link rel="stylesheet" href="{{url_for('static',filename='css/mainContent.css')}}">
+
+{% endblock %}
+{% block content %}
+<div id="container">
+    <header>Java Development
+    </header>
+    <nav>
+      <br>
+      <section>
+        <div class="panel-group" id="accordion">
+          {{ macros.loop_weeks(weeks) }}
+
+        </div>
+      </section>
+    </nav>
+
+    <div id="content">
+      {% block code_content%}
+      
+      {% endblock%}
+    </div>
+
+    <footer>
+      <p>Copyright 2017 Moringa School.</p>
+    </footer>
+
+  </div>
 
 {% endblock %}
