@@ -4,6 +4,7 @@ class Lesson(db.Model):
     __tablename__ = 'lessons'
 
     id = db.Column(db.Integer,primary_key = True)
-    title = db.Column(db.String(250))
-    content = db.Column(db.String)
-    day = db.Column(db.String)
+    day_number = db.Column(db.Integer)
+    week_number = db.Column(db.Integer)
+    body = db.Column(db.String)
+    lessons = db.Column(db.String)
