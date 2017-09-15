@@ -1,0 +1,26 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    <a href="{{url_for('admin.newLesson')}}">Add New Lesson</a>
+  </div>
+
+  <div class="row">
+
+    <h3> Update Lessons </h3>
+
+    {% for day in days %}
+      <div class="col-xs-12 col-md-4">
+
+        <a href="{{url_for('admin.update_lesson',id=day.id)}}"><h4>{{day.day_name}}: #{{day.day_number}} </h4>
+</a>
+      </div>
+    {% endfor %}
+
+  </div>
+
+</div>
+
+{% endblock %}

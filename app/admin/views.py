@@ -1,6 +1,6 @@
 from . import admin
 from flask import render_template,redirect,url_for
-from .forms import CreateLesson
+from .forms import CreateLesson,UpdateLesson
 from ..models import Lesson # soon to update to day
 from .. import db
 
@@ -9,9 +9,31 @@ from .. import db
 @admin.route('/dashboard')
 def dashboard():
 
-    days =Lesson.query.order_by(Lesson.day_number).all()
+    days = Lesson.query.order_by(Lesson.day_number).all()
     return render_template('admin/dashboard.html',days=days)
 
+
+@admin.route('/update/<int:id>',methods = ['GET','POST'])
+def update_lesson(id):
+
+#  Getting the days lesson
+    day = Lesson.query.filter_by(id = id).first()
+
+    # Instanciate form
+    form = UpdateLesson()
+    form.body.data= day.body
+    form.lessons.render_kw={'value':day.lessons}
+
+    if form.validate_on_submit():
+        body = form.body.data
+        lessons = form.lessons.data
+        day.body =body
+        day.lessons = lessons
+        db.session.commit()
+        return redirect(url_for('.dashboard'))
+
+
+    return render_template('admin/update.html',form=form)
 
 
 @admin.route('/dashboard/newLesson',methods = ['GET','POST'])
@@ -29,7 +51,7 @@ def newLesson():
             new_day = Lesson(day_number=doc_num,week_number=week,day_name=weekday,body=body,lessons=lessons)
             new_day.save_lesson()
 
-        return redirect(url_for('main.index'))
+        return redirect(url_for('.dashboard'))
 
     return render_template('admin/newLesson.html',form = form)
 
