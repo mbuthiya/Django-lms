@@ -8,3 +8,8 @@ class Lesson(db.Model):
     week_number = db.Column(db.Integer)
     body = db.Column(db.String)
     lessons = db.Column(db.String)
+
+
+    def save_lesson(self):
+        db.session.add(self)
+        db.session.commit()
