@@ -3,10 +3,12 @@ from flask import render_template,redirect,url_for
 from .forms import CreateLesson,UpdateLesson
 from ..models import Lesson # soon to update to day
 from .. import db
+from flask_login import login_required
 
 
 
 @admin.route('/dashboard')
+@login_required
 def dashboard():
 
     days = Lesson.query.order_by(Lesson.day_number).all()
@@ -14,6 +16,7 @@ def dashboard():
 
 
 @admin.route('/update/<int:id>',methods = ['GET','POST'])
+@login_required
 def update_lesson(id):
 
 #  Getting the days lesson
@@ -37,6 +40,7 @@ def update_lesson(id):
 
 
 @admin.route('/dashboard/newLesson',methods = ['GET','POST'])
+@login_required
 def newLesson():
     form = CreateLesson() # create a day
     if form.validate_on_submit():
