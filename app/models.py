@@ -7,6 +7,7 @@ class Lesson(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     day_number = db.Column(db.Integer)
+    day_name = db.Column(db.String)
     week_number = db.Column(db.Integer)
     body = db.Column(db.String)
     body_html = db.Column(db.Text)
@@ -26,5 +27,5 @@ class Lesson(db.Model):
     def save_lesson(self):
         db.session.add(self)
         db.session.commit()
-        
+
 db.event.listen(Lesson.body,'set',Lesson.on_changed_body)
