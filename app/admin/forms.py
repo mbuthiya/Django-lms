@@ -11,10 +11,3 @@ class CreateLesson(FlaskForm):
     body = TextAreaField("Edit your content Markdown")
     lessons = StringField('Enter the lessons on this day separated by commas',validators = [Required()])
     submit = SubmitField("Submit Lesson")
-
-
-class UpdateLesson(FlaskForm):
-
-    body = TextAreaField()
-    lessons = StringField('Update lessons on this day separated by commas',validators = [Required()])
-    submit = SubmitField("Submit Lesson")

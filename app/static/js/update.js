@@ -1,13 +1,4 @@
-chrome.permissions.request({
-  permissions: ['clipboardRead'],
-  origins: ['http://www.google.com/']
-});
-
-$(document).ready(function () {
-
-  var textArea = $('#body');
-  textArea.focus()
-  document.execCommand("Paste");
-  console.log(textArea);
-
+$(document).ready(function(e){
+  //console.log(e.clipboardData.getData('text/plain'))
+  console.log(document.execCommand('copy',"jsjsjs"));
 })

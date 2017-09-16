@@ -1,6 +1,6 @@
 from . import admin
-from flask import render_template,redirect,url_for
-from .forms import CreateLesson,UpdateLesson
+from flask import render_template,redirect,url_for,request
+from .forms import CreateLesson
 from ..models import Lesson # soon to update to day
 from .. import db
 from flask_login import login_required
@@ -24,14 +24,10 @@ def update_lesson(id):
 #  Getting the days lesson
     day = Lesson.query.filter_by(id = id).first()
 
-    # Instanciate form
-    form = UpdateLesson()
-    pyperclip.copy(day.body)
-    form.lessons.render_kw={'value':day.lessons}
 
-    if form.validate_on_submit():
-        body = form.body.data
-        lessons = form.lessons.data
+    if request.method == 'POST':
+        body = request.form.get('body')
+        lessons = request.form.get("lessons")
 
         day.body = body
         day.lessons = lessons
@@ -39,7 +35,7 @@ def update_lesson(id):
         return redirect(url_for('.dashboard'))
 
     title = f'Update {day.day_name} day {day.day_number}'
-    return render_template('admin/update.html',form=form,title=title)
+    return render_template('admin/update.html',title=title,day=day)
 
 
 @admin.route('/dashboard/newLesson',methods = ['GET','POST'])
