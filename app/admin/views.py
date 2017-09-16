@@ -4,6 +4,7 @@ from .forms import CreateLesson,UpdateLesson
 from ..models import Lesson # soon to update to day
 from .. import db
 from flask_login import login_required
+import pyperclip
 
 
 
@@ -25,13 +26,14 @@ def update_lesson(id):
 
     # Instanciate form
     form = UpdateLesson()
-    form.body.data= day.body
+    pyperclip.copy(day.body)
     form.lessons.render_kw={'value':day.lessons}
 
     if form.validate_on_submit():
         body = form.body.data
         lessons = form.lessons.data
-        day.body =body
+
+        day.body = body
         day.lessons = lessons
         db.session.commit()
         return redirect(url_for('.dashboard'))
