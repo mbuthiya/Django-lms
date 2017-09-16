@@ -39,12 +39,12 @@ def get_weeks():
     week4 =Lesson.query.filter_by(week_number = 4).order_by(Lesson.day_number).all()
     week5 =Lesson.query.filter_by(week_number = 5).order_by(Lesson.day_number).all()
     week6 =Lesson.query.filter_by(week_number = 6).order_by(Lesson.day_number).all()
-    week_names=['Pre-course Work','Week 1',"Week 2" ,"Week 3" "Week 4","Week 5"]
-    weeks = {"Precourse Work":['Pre-course Work',week1],
-            "OOP and Unittesting":['Week 1',week2],
-            "Introduction To Flask":["Week 2",week3],
-            "Working With Databases":["Week 3",week4],
-            "Pair Project Week":["Week 4",week5],
-            "Group Project":["Week 5",week6]}
+
+    weeks = {"Precourse Work":['Pre-course Work',week1,"collapse1"],
+            "OOP and Unittesting":['Week 1',week2,"collapse2"],
+            "Introduction To Flask":["Week 2",week3,"collapse3"],
+            "Working With Databases":["Week 3",week4,"collapse4"],
+            "Pair Project Week":["Week 4",week5,"collapse5"],
+            "Group Project":["Week 5",week6,"collapse6"]}
 
     return weeks
