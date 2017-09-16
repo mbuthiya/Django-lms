@@ -24,7 +24,7 @@ def display_day(day_num,weeks):
         day = Lesson.query.filter_by(day_number = day_num).first()
         if day:
             html_doc = markdown2.markdown(day.body,extras=["code-friendly","fenced-code-blocks"])
-            title = f'{day.day_name} day {day.day_num}'
+            title = f'{day.day_name} day {day.day_number}'
             return render_template('main/index.html',weeks=weeks,day=day,html_doc = html_doc,title=title)
         else:
             abort(404)
