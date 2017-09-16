@@ -1,1 +1,16 @@
-<h1>jdnjadnj</h1>
+{% extends 'bootstrap/base.html' %}
+
+{%block styles %}
+
+  {{super()}}
+<link rel="stylesheet" href="{{url_for('static',filename='css/error.css')}}">
+
+{% endblock %}
+
+{%block content%}
+<div class="container img-c">
+
+  <img src="{{url_for('static',filename='images/err.png')}}" alt="" class="img-responsive">
+
+</div>
+{%endblock%}
