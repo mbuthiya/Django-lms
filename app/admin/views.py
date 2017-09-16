@@ -48,7 +48,7 @@ def newLesson():
         body = form.body.data
         lessons = form.lessons.data
         weekday = get_week_day(day)
-        doc_num = get_doc_number(day,week)
+        doc_num = get_doc_number(week,day)
 
         if validate_new_lesson(doc_num):
             new_day = Lesson(day_number=doc_num,week_number=week,day_name=weekday,body=body,lessons=lessons)
