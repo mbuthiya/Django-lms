@@ -12,6 +12,7 @@ from flask_login import login_required
 def dashboard():
 
     days = Lesson.query.order_by(Lesson.day_number).all()
+    title = 'MS curriculum dashboard'
     return render_template('admin/dashboard.html',days=days)
 
 
@@ -35,8 +36,8 @@ def update_lesson(id):
         db.session.commit()
         return redirect(url_for('.dashboard'))
 
-
-    return render_template('admin/update.html',form=form)
+    title = f'Update {day.day_name} day {day.day_number}'
+    return render_template('admin/update.html',form=form,title=title)
 
 
 @admin.route('/dashboard/newLesson',methods = ['GET','POST'])
@@ -56,8 +57,8 @@ def newLesson():
             new_day.save_lesson()
 
         return redirect(url_for('.dashboard'))
-
-    return render_template('admin/newLesson.html',form = form)
+    title = 'New Lesson'
+    return render_template('admin/newLesson.html',form = form,title=title)
 
 
 def get_week_day(day_num):

@@ -5,15 +5,21 @@
 
   <div class="row">
 
-    <h3> Update Lessons </h3>
+    <h3> Current Lessons </h3>
 
+  {% if day%}
     {% for day in days %}
       <div class="col-xs-12 col-md-4">
 
-        <a href="{{url_for('admin.update_lesson',id=day.id)}}"><h4>{{day.day_name}}: #{{day.day_number}} </h4>
-</a>
+        <a href="{{url_for('admin.update_lesson',id=day.id)}}">
+          <h4>{{day.day_name}}: #{{day.day_number}} </h4>
+        </a>
       </div>
     {% endfor %}
+
+  {%else%}
+      <h2 class="text-center">You Currently Have No Lessons</h2>
+  {% endif %}
 
   </div>
 

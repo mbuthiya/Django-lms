@@ -13,7 +13,7 @@ def login():
             login_user(user,login_form.remember.data)
             return redirect(request.args.get('next') or url_for('admin.dashboard'))
 
-    title = "watchlist login"
+    title = "MS curriculum login"
     return render_template('auth/login.html',login_form = login_form,title=title)
 
 @auth.route('/logout')
