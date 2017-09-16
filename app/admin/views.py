@@ -1,5 +1,5 @@
 from . import admin
-from flask import render_template,redirect,url_for,request
+from flask import render_template,flash,redirect,url_for,request
 from .forms import CreateLesson
 from ..models import Lesson # soon to update to day
 from .. import db
@@ -53,6 +53,9 @@ def newLesson():
         if validate_new_lesson(doc_num):
             new_day = Lesson(day_number=doc_num,week_number=week,day_name=weekday,body=body,lessons=lessons)
             new_day.save_lesson()
+        else:
+            return redirect(url_for('.newLesson'))
+
 
         return redirect(url_for('.dashboard'))
     title = 'New Lesson'
@@ -81,7 +84,7 @@ def validate_new_lesson(day_num):
     lesson = Lesson.query.filter_by(day_number =day_num).first()
 
     if lesson:
-        flash("That day already has lessons Go to edit it")
+        flash("That day already has lessons Try editing it")
         return False
     else:
         return True
