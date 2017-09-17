@@ -75,6 +75,8 @@ def get_week_day(day_num):
         weekday = 'Thursday'
     elif day_num == 5:
         weekday = 'Friday'
+    else:
+        weekday = 'Weekend'
 
     return weekday
 
