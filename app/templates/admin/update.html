@@ -15,11 +15,13 @@
   <!-- form row -->
   <div class="row">
 
-    <div class="col-sm-12 col-md-2"></div>
+    <div class="col-sm-12 col-md-2">
+      {{wtf.quick_forms(form)}}
+    </div>
 
     <!-- form display column  -->
     <div class="col-sm-12 col-md-8">
-      
+
       <form  action="{{url_for('admin.update_lesson',id=day.id)}}" method="post">
 
         <div class="form-group">
