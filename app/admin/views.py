@@ -1,6 +1,6 @@
 from . import admin
 from flask import render_template,flash,redirect,url_for,request
-from .forms import CreateLesson,DeleteLesson
+from .forms import CreateLesson
 from ..models import Lesson # soon to update to day
 from .. import db
 from flask_login import login_required
@@ -34,17 +34,20 @@ def update_lesson(id):
         db.session.commit()
         return redirect(url_for('.dashboard'))
 
-    form = DeleteLesson()
-
-    if form.validate_on_submit():
-        db.session.delete(day)
-        db.session.commit()
-
-        
-
-
     title = f'Update {day.day_name} day {day.day_number}'
-    return render_template('admin/update.html',title=title,day=day,form=form)
+    return render_template('admin/update.html',title=title,day=day)
+
+
+@admin.route('/delete/<int:id>',methods = ['POST'])
+@login_required
+def delete(id):
+    day = Lesson.query.filter_by(id = id).first()
+    db.session.delete(day)
+    db.session.commit()
+    return redirect(url_for('.dashboard'))
+
+
+
 
 
 @admin.route('/dashboard/newLesson',methods = ['GET','POST'])
