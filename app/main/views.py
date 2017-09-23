@@ -1,5 +1,5 @@
 from . import main
-from flask import render_template,abort,make_response,request
+from flask import render_template,abort,make_response
 from ..models import Lesson
 from .. import db
 import markdown2
@@ -9,13 +9,7 @@ import markdown2
 @main.route('/')
 def index():
     weeks = get_weeks()
-    day = request.cookies.get("Day")
-
-    if day:
-        return display_day(day,weeks)
-    else:
-        return display_day(1,weeks)
-
+    return display_day(1,weeks)
 
 
 @main.route('/<int:day_num>')
@@ -32,9 +26,7 @@ def display_day(day_num,weeks):
         if day:
             html_doc = markdown2.markdown(day.body,extras=["code-friendly", "fenced-code-blocks"])
             title = f'{day.day_name} day {day.day_number}'
-            response = make_response(render_template('main/index.html',weeks=weeks,day=day,html_doc = html_doc,title=title))
-            response.set_cookie("Day":day_num)
-            return response
+            return render_template('main/index.html',weeks=weeks,day=day,html_doc = html_doc,title=title)
         else:
             abort(404)
 
