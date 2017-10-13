@@ -115,6 +115,8 @@ def get_doc_number(week,day):
         num_sum = 21
     elif week == 5:
         num_sum =28
+    elif week == 6:
+        num_sum = 35
 
     sum=day+num_sum
 
