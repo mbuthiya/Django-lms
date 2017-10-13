@@ -1,9 +1,11 @@
 import os
+import datetime
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SIMPLEMDE_JS_IIFE = True
     SIMPLEMDE_USE_CDN = True
+    REMEMBER_COOKIE_DURATION = datetime.timedelta(days = 30)
 
 class ProdConfig(Config):
 
