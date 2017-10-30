@@ -9,7 +9,7 @@ from ..models import Lesson
 @main.route('/')
 def index():
     weeks = get_weeks()
-    return display_day(1, weeks)
+    return display_day(6, weeks)
 
 
 @main.route('/<int:day_num>')
